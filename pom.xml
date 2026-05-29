@@ -11,6 +11,12 @@
     <groupId>org.mifos</groupId>
     <artifactId>mifos-workflow</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging> <modules>
+        <module>mifos-workflow-core</module>
+        <module>mifos-workflow-adapter-flowable</module>
+        <module>mifos-workflow-adapter-conductor</module>
+        <module>mifos-workflow-app</module>
+    </modules>
     <name>mifos-workflow</name>
     <description>Workflow integration for Mifos X</description>
     <url/>
@@ -167,18 +173,18 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
