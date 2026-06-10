@@ -1,34 +1,4 @@
-package org.mifos.workflow.engine.flowable;
 
-import org.flowable.engine.repository.Deployment;
-import org.flowable.task.api.Task;
-import org.mifos.workflow.core.model.DeploymentInfo;
-import org.mifos.workflow.core.model.HistoricProcessInstance;
-import org.mifos.workflow.core.model.ProcessDefinition;
-import org.mifos.workflow.core.model.ProcessInstance;
-import org.mifos.workflow.core.model.TaskInfo;
-import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-
-/**
- * Mapper class for converting Flowable engine objects to domain model objects.
- * This class provides mapping methods to convert between Flowable-specific objects
- * and the application's domain model, improving separation of concerns and testability.
- */
-@Component
-public class FlowableMapper {
-
-    public ProcessDefinition mapToProcessDefinition(org.flowable.engine.repository.ProcessDefinition flowableDef) {
-        return ProcessDefinition.builder()
-                .id(flowableDef.getId())
-                .key(flowableDef.getKey())
-                .name(flowableDef.getName())
-                .version(flowableDef.getVersion())
-                .deploymentId(flowableDef.getDeploymentId())
-                .build();
-    }
 
 
     public ProcessInstance mapToProcessInstance(org.flowable.engine.runtime.ProcessInstance flowableInstance) {
