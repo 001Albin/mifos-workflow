@@ -10,12 +10,14 @@
     </parent>
     <artifactId>mifos-workflow-adapter-flowable</artifactId>
     <packaging>jar</packaging>
+    <name>mifos-workflow-adapter-flowable</name>
+    <description>Flowable engine implementation of the WorkflowService SPI</description>
 
     <dependencies>
         <dependency>
             <groupId>org.mifos</groupId>
             <artifactId>mifos-workflow-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
