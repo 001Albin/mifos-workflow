@@ -8,6 +8,7 @@ import static org.mifos.workflow.infrastructure.usecase.flowable.core.FlowableFl
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import java.util.UUID;
 import org.flowable.engine.RepositoryService;
 import org.mifos.workflow.infrastructure.core.model.MifosFlowDeployRequest;
 import org.mifos.workflow.infrastructure.core.model.MifosFlowDeployResponse;
@@ -24,14 +25,16 @@ class FlowableFlowDeployUsecase implements MifosFlowDeployUsecase {
 
     @Override
     public MifosFlowDeployResponse execute(MifosFlowDeployRequest request) {
-        // var deployment =
-        repositoryService
+        var deployment = repositoryService
                 .createDeployment()
                 .addInputStream(request.getName(), request.getProcessDefinition())
                 .name(request.getName())
                 .deploy();
 
-        // TODO: return some sensible data
-        return MifosFlowDeployResponse.builder().build();
+        log.debug("deployed process definition {} with id {}", request.getName(), deployment.getId());
+
+        return MifosFlowDeployResponse.builder()
+                .id(UUID.fromString(deployment.getId()))
+                .build();
     }
 }
