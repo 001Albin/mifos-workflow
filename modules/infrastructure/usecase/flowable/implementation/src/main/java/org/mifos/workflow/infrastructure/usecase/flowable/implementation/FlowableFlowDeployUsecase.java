@@ -15,6 +15,8 @@ import org.mifos.workflow.infrastructure.core.model.MifosFlowDeployResponse;
 import org.mifos.workflow.infrastructure.core.usecase.MifosFlowDeployUsecase;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBooleanProperty;
 import org.springframework.stereotype.Component;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,7 +29,8 @@ class FlowableFlowDeployUsecase implements MifosFlowDeployUsecase {
     public MifosFlowDeployResponse execute(MifosFlowDeployRequest request) {
         var deployment = repositoryService
                 .createDeployment()
-                .addInputStream(request.getName(), request.getProcessDefinition())
+                .addInputStream(request.getName(),
+                        new ByteArrayInputStream(request.getProcessDefinition().getBytes(StandardCharsets.UTF_8)))
                 .name(request.getName())
                 .deploy();
 
