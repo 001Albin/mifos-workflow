@@ -4,20 +4,17 @@
  */
 package org.mifos.workflow.infrastructure.usecase.flowable.mapping;
 
-import org.flowable.task.api.Task;
+import java.util.List;
+import org.flowable.engine.history.HistoricProcessInstance;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mifos.boot.commons.mapping.MifosMapperConfiguration;
-import org.mifos.workflow.infrastructure.core.model.MifosFlowTask;
-import org.mifos.workflow.infrastructure.core.model.MifosFlowTaskPendingResponse;
-
-import java.util.List;
+import org.mifos.workflow.infrastructure.core.model.MifosFlowHistoryEntry;
 
 @Mapper(config = MifosMapperConfiguration.class)
-public interface FlowableTaskPendingMapper {
-    @Mapping(source = "id", target = "taskId")
-    @Mapping(source = "processInstanceId", target = "processId")
-    MifosFlowTask map(Task task);
+public interface FlowableHistoryMapper {
+    @Mapping(source = "id", target = "processId")
+    MifosFlowHistoryEntry map(HistoricProcessInstance instance);
 
-    List<MifosFlowTask> map(List<Task> tasks);
+    List<MifosFlowHistoryEntry> map(List<HistoricProcessInstance> instances);
 }
